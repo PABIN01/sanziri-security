@@ -45,7 +45,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+
+    # cloudinary_storage doit être déclaré AVANT staticfiles
+    "cloudinary_storage",
     "django.contrib.staticfiles",
+    "cloudinary",
 
     "corsheaders",
     "rest_framework",
@@ -138,6 +142,27 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Cloudinary : stockage des fichiers uploadés (images produits, blog,
+# témoignages) en production. Activé uniquement si les identifiants
+# sont présents dans .env — sinon Django garde le stockage local par
+# défaut (pratique pour le développement, aucun compte requis).
+CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME", default="")
+
+if CLOUDINARY_CLOUD_NAME:
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": CLOUDINARY_CLOUD_NAME,
+        "API_KEY": env("CLOUDINARY_API_KEY", default=""),
+        "API_SECRET": env("CLOUDINARY_API_SECRET", default=""),
+    }
+    STORAGES = {
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
 
 
 # CORS
