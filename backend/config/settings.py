@@ -174,6 +174,13 @@ else:
         },
     }
 
+# Réglage historique requis par django-cloudinary-storage (sa commande
+# collectstatic interne lit encore cet attribut, absent depuis que
+# Django utilise STORAGES). Volontairement PAS pointé vers Cloudinary :
+# les fichiers statiques Django restent servis par WhiteNoise, seul
+# le stockage MEDIA (uploads) va sur Cloudinary.
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
+
 
 # CORS
 CORS_ALLOWED_ORIGINS = env.list(
