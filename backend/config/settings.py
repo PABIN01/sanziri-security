@@ -161,7 +161,7 @@ if CLOUDINARY_CLOUD_NAME:
             "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
         },
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            "BACKEND": "config.storage.ForgivingManifestStaticFilesStorage",
         },
     }
 else:
@@ -170,7 +170,7 @@ else:
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            "BACKEND": "config.storage.ForgivingManifestStaticFilesStorage",
         },
     }
 
