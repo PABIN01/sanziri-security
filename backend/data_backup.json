@@ -1,0 +1,321 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$U1dbteHbbsyzgQiHHw9lRb$pGC8enkIINA5Mxy4smbgqWlAFGAn/OU4ZAAkTH0Ymt0=",
+    "last_login": "2026-08-14T00:42:29.548Z",
+    "is_superuser": true,
+    "username": "pabinmike",
+    "first_name": "",
+    "last_name": "",
+    "email": "pabinbenjamin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-14T00:37:58.501Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2qpl2ae66uwp7us4h5zbqil5s0jrytk0",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHgDAVcuvcbyAwPqRqalHZl_HfbpAvd3nPOfYtA61LD2vMcxiQuQovT78YUn7ntID2o3ScZp7bMI8tdkQft8jal_Loe7t9BpV63OppcsCTNPERgj4oMn4E0o4aSabAbQM2KwTmVyWgsHpz3FkG5hFZ8vv-XN8c:1wufzG:npXb3QAQf-ZYQuE1K_JgUUYWWvyq6umxOr9h41oZzS8",
+    "expire_date": "2026-08-28T00:41:30.947Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u1wwy8spmm5k9tyngiwtbc5h9z8okls4",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHgDAVcuvcbyAwPqRqalHZl_HfbpAvd3nPOfYtA61LD2vMcxiQuQovT78YUn7ntID2o3ScZp7bMI8tdkQft8jal_Loe7t9BpV63OppcsCTNPERgj4oMn4E0o4aSabAbQM2KwTmVyWgsHpz3FkG5hFZ8vv-XN8c:1wug0D:BlPwP0Pggj820gMIeThCvOMoR2HWs-5D6zLKIj6Hwvg",
+    "expire_date": "2026-08-28T00:42:29.555Z"
+  }
+},
+{
+  "model": "core.service",
+  "pk": 1,
+  "fields": {
+    "title": "Sécurité personnelle",
+    "slug": "securite-personnelle",
+    "description": "Protection discrète et professionnelle pour particuliers, cadres et familles.",
+    "features": [
+      "Protection rapprochée",
+      "Sécurisation résidentielle",
+      "Accompagnement sécurisé",
+      "Analyse des menaces",
+      "Chauffeur de sécurité"
+    ],
+    "icon": "",
+    "image": "",
+    "is_active": true,
+    "order": 0,
+    "created_at": "2026-08-15T22:37:52.935Z",
+    "updated_at": "2026-08-15T22:37:52.935Z"
+  }
+},
+{
+  "model": "core.testimonial",
+  "pk": 1,
+  "fields": {
+    "quote": "Voici le témoignage de test",
+    "author": "Paul Stéphane",
+    "role": "DG",
+    "image": "testimonials/dg.jpeg",
+    "rating": 3,
+    "category": "Sécurité d'entreprise",
+    "is_active": true,
+    "created_at": "2026-08-16T01:53:34.888Z",
+    "updated_at": "2026-08-16T01:55:07.793Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "Caméra de Surveillance",
+    "slug": "camera-de-surveillance",
+    "description": "Caméra de surveillance de test",
+    "long_description": "Caméra de surveillance pour test de l'API",
+    "price": "199.90",
+    "image": "products/images.jpeg",
+    "category": "Surveillance",
+    "features": [
+      "salut"
+    ],
+    "specifications": [
+      "bonjour"
+    ],
+    "is_active": true,
+    "created_at": "2026-08-14T01:06:03.695Z",
+    "updated_at": "2026-08-16T00:58:23.406Z",
+    "related_products": []
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 1,
+  "fields": {
+    "title": "5 conseils pour renforcer la sécurité de votre entreprise",
+    "slug": "5-conseils-pour-renforcer-la-securite-de-votre-entreprise",
+    "excerpt": "Découvrez cinq mesures essentielles pour renforcer la sécurité de votre entreprise.",
+    "content": "La sécurité d'une entreprise repose sur plusieurs éléments complémentaires : prévention, surveillance, contrôle des accès et sensibilisation.",
+    "image": "",
+    "author": "Sanziri Security",
+    "category": "Sécurité d'entreprise",
+    "tags": [
+      "sécurité",
+      "entreprise",
+      "prévention"
+    ],
+    "published_at": "2026-08-15T00:21:12Z",
+    "is_published": true,
+    "created_at": "2026-08-15T00:23:59.556Z",
+    "updated_at": "2026-08-15T00:23:59.556Z"
+  }
+},
+{
+  "model": "contact.contactmessage",
+  "pk": 1,
+  "fields": {
+    "name": "Test Sanziri",
+    "email": "test@sanziri.com",
+    "phone": "+23670000000",
+    "subject": "Quote Request",
+    "message": "Test d'envoi du formulaire de contact.",
+    "status": "new",
+    "created_at": "2026-08-14T19:09:57.003Z",
+    "updated_at": "2026-08-14T19:09:57.003Z"
+  }
+},
+{
+  "model": "contact.contactmessage",
+  "pk": 2,
+  "fields": {
+    "name": "paul",
+    "email": "albert.paul@gmail.com",
+    "phone": "+23675504386",
+    "subject": "Quote Request",
+    "message": "Bonjour, je vous écrit afin de prendre un rendez-vous dans cette semaine, merci",
+    "status": "new",
+    "created_at": "2026-08-14T22:29:05.168Z",
+    "updated_at": "2026-08-14T23:57:04.047Z"
+  }
+},
+{
+  "model": "contact.contactmessage",
+  "pk": 3,
+  "fields": {
+    "name": "rigobert song",
+    "email": "defenseurducameroun@gmail.com",
+    "phone": "+2374356729",
+    "subject": "General Inquiry",
+    "message": "Pour celui-là, on testera directement l'envoi d'un vrai message depuis React → Django → PostgreSQL.",
+    "status": "new",
+    "created_at": "2026-08-16T02:06:20.909Z",
+    "updated_at": "2026-08-16T02:06:20.909Z"
+  }
+},
+{
+  "model": "contact.newslettersubscriber",
+  "pk": 1,
+  "fields": {
+    "email": "test@sanzirisecurity.com",
+    "subscribed_at": "2026-08-16T04:21:29.950Z",
+    "is_active": true
+  }
+},
+{
+  "model": "contact.newslettersubscriber",
+  "pk": 2,
+  "fields": {
+    "email": "pabinbenjamin@gmail.com",
+    "subscribed_at": "2026-08-16T18:33:27.442Z",
+    "is_active": true
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-08-14T01:06:03.703Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "products",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Caméra de Surveillance",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-08-14T23:57:04.053Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "contact",
+      "contactmessage"
+    ],
+    "object_id": "2",
+    "object_repr": "paul - Quote Request",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-08-15T00:23:59.559Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "blog",
+      "post"
+    ],
+    "object_id": "1",
+    "object_repr": "5 conseils pour renforcer la sécurité de votre entreprise",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-08-15T22:37:52.957Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "core",
+      "service"
+    ],
+    "object_id": "1",
+    "object_repr": "Sécurité personnelle",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-08-16T00:56:48.478Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "products",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Caméra de Surveillance",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Features\", \"Specifications\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-08-16T00:58:23.411Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "products",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Caméra de Surveillance",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Price\", \"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-08-16T01:53:34.893Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "core",
+      "testimonial"
+    ],
+    "object_id": "1",
+    "object_repr": "Paul Stéphane",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-08-16T01:55:07.797Z",
+    "user": [
+      "pabinmike"
+    ],
+    "content_type": [
+      "core",
+      "testimonial"
+    ],
+    "object_id": "1",
+    "object_repr": "Paul Stéphane",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Rating\"]}}]"
+  }
+}
+]
