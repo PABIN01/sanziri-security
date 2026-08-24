@@ -30,6 +30,12 @@ X_FRAME_OPTIONS = "DENY"
 SECURE_REFERRER_POLICY = "same-origin"
 
 if not DEBUG:
+    # Railway (comme la plupart des PaaS) termine le HTTPS à son
+    # niveau et transmet la requête à l'app en HTTP interne, avec un
+    # header indiquant le protocole d'origine. Sans cette ligne,
+    # Django ne voit jamais de HTTPS et redirige indéfiniment
+    # (boucle infinie ERR_TOO_MANY_REDIRECTS).
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
