@@ -161,7 +161,7 @@ if CLOUDINARY_CLOUD_NAME:
             "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
         },
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
     }
 else:
@@ -170,15 +170,17 @@ else:
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
     }
 
 # Réglage historique requis par django-cloudinary-storage (sa commande
 # collectstatic interne lit encore cet attribut, absent depuis que
 # Django utilise STORAGES). Volontairement PAS pointé vers Cloudinary :
-# les fichiers statiques Django restent servis par WhiteNoise, seul
-# le stockage MEDIA (uploads) va sur Cloudinary.
+# les fichiers statiques Django restent servis par WhiteNoise (via son
+# middleware, pas via un backend de storage spécial — la compression
+# parallèle de WhiteNoise s'est révélée instable, cf commit précédent),
+# seul le stockage MEDIA (uploads) va sur Cloudinary.
 STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
 
