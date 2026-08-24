@@ -52,9 +52,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
 
-    # cloudinary_storage doit être déclaré AVANT staticfiles
-    "cloudinary_storage",
+    # django.contrib.staticfiles doit être déclaré AVANT cloudinary_storage
+    # pour que Django utilise SA commande collectstatic native, pas celle
+    # de cloudinary_storage (qui donnait "0 static files copied" — on ne
+    # route pas les fichiers statiques vers Cloudinary, uniquement les
+    # médias uploadés).
     "django.contrib.staticfiles",
+    "cloudinary_storage",
     "cloudinary",
 
     "corsheaders",
