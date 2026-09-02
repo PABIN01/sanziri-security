@@ -10,6 +10,7 @@ export async function createContactMessage(data: {
   phone: string;
   subject: string;
   message: string;
+  website?: string;
 }) 
 {
   const response = await fetch(`${API_BASE_URL}/contact/`, {
@@ -175,13 +176,13 @@ export async function getService(slug: string): Promise<Service> {
   return response.json();
 }
 
-export async function subscribeToNewsletter(email: string) {
+export async function subscribeToNewsletter(email: string, website?: string) {
   const response = await fetch(`${API_BASE_URL}/contact/newsletter/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, website }),
   });
 
   const data = await response.json().catch(() => null);

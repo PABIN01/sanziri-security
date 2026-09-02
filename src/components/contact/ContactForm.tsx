@@ -9,6 +9,7 @@ const ContactForm = () => {
     phone: '',
     subject: '',
     message: '',
+    website: '', // honeypot anti-spam : doit rester vide
   });
   
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -71,6 +72,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       phone: '',
       subject: '',
       message: '',
+      website: '',
     });
 
     setTimeout(() => {
@@ -106,6 +108,19 @@ const handleSubmit = async (e: React.FormEvent) => {
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
+          {/* Honeypot anti-spam : invisible pour un humain,
+              masqué hors écran, exclu de la tabulation et de
+              l'autocomplétion navigateur. */}
+          <input
+            type="text"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+          />
           {submitError && (
             <div className="mb-6 rounded-md bg-red-50 border border-red-200 px-4 py-3 text-red-700 text-sm">
               {submitError}
