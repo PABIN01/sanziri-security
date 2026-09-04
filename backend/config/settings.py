@@ -230,6 +230,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 BREVO_API_KEY = env("BREVO_API_KEY", default="")
 
+# Toujours définie, quel que soit le backend actif : sert d'identifiant
+# SMTP en local ET d'adresse de réception des notifications internes
+# (contact/views.py), y compris quand Brevo est utilisé en prod.
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+
 if BREVO_API_KEY:
     EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
     ANYMAIL = {"BREVO_API_KEY": BREVO_API_KEY}
@@ -238,7 +243,6 @@ else:
     EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
     EMAIL_PORT = env.int("EMAIL_PORT", default=587)
     EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
-    EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
     EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
     # Filet de sécurité : si jamais le SMTP reste bloqué quelque part,
     # on échoue vite (exception attrapable) plutôt que de laisser le
