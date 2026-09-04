@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import generics
 from .models import Product
-from .serializers import ProductSerializer
+from .serializers import OrderSerializer, ProductSerializer
 
 
 class ProductListView(generics.ListAPIView):
@@ -21,3 +21,7 @@ class ProductDetailView(generics.RetrieveAPIView):
         "related_products"
     )
     lookup_field = "slug"
+
+class OrderCreateView(generics.CreateAPIView):
+    serializer_class = OrderSerializer
+    throttle_scope = "orders"

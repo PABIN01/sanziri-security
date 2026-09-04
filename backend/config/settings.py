@@ -214,6 +214,7 @@ REST_FRAMEWORK = {
         "anon": "120/min",
         "contact": "5/hour",
         "newsletter": "5/hour",
+        "orders": "10/hour",
     },
 }
 
