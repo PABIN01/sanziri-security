@@ -222,12 +222,27 @@ REST_FRAMEWORK = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# EMAIL - développement
+# EMAIL
+# Railway bloque les connexions SMTP sortantes (ports 25/465/587) sur
+# les plans Free/Trial/Hobby. On utilise donc l'API HTTP de Brevo en
+# prod (BREVO_API_KEY définie sur Railway), et le SMTP Gmail classique
+# en local (BREVO_API_KEY absente), qui fonctionne très bien en dev.
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_PORT = env.int("EMAIL_PORT", default=587)
-EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+BREVO_API_KEY = env("BREVO_API_KEY", default="")
+
+if BREVO_API_KEY:
+    EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+    ANYMAIL = {"BREVO_API_KEY": BREVO_API_KEY}
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = env("EMAIL_HOST", default="smtp.gmail.com")
+    EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+    EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+    EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+    # Filet de sécurité : si jamais le SMTP reste bloqué quelque part,
+    # on échoue vite (exception attrapable) plutôt que de laisser le
+    # worker Gunicorn se faire tuer par son propre timeout.
+    EMAIL_TIMEOUT = 10
+
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")

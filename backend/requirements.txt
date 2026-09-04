@@ -1,6 +1,7 @@
 asgiref==3.12.1
 cloudinary==1.42.0
 django-cloudinary-storage==0.3.0
+django-anymail==13.1
 Django==6.1
 django-cors-headers==4.9.0
 django-environ==0.14.0
