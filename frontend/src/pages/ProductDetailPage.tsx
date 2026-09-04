@@ -11,6 +11,7 @@ import {
 import SectionTitle from '../components/common/SectionTitle';
 import { getProduct, getProducts, Product } from '../services/api';
 import { useSEO } from '../hooks/useSEO.ts';
+import { useCart } from '../context/CartContext';
 
 const ProductDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -20,6 +21,8 @@ const ProductDetailPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const { addToCart } = useCart();
 
   useSEO({
     title: product ? product.name : 'Produit',
@@ -178,10 +181,16 @@ const ProductDetailPage = () => {
                   </label>
                   <button
                     type="button"
+                    onClick={() => {
+                      if (!product) return;
+                      addToCart(product, quantity);
+                      setAddedToCart(true);
+                      setTimeout(() => setAddedToCart(false), 2000);
+                    }}
                     className="bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:bg-orange-700 w-full flex items-center justify-center"
                   >
                     <ShoppingCart className="h-5 w-5 mr-2" />
-                    Ajouter au Panier
+                    {addedToCart ? 'Ajouté !' : 'Ajouter au Panier'}
                   </button>
                 </div>
               </div>

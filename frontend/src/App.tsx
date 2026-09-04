@@ -11,12 +11,15 @@ import ContactPage from './pages/ContactPage';
 import BlogPostPage from './pages/BlogPostPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
+import { CartProvider } from './context/CartContext';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
@@ -27,9 +30,11 @@ function App() {
           <Route path="testimonials" element={<TestimonialsPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="cart" element={<CartPage />} />
         </Route>
       </Routes>
     </Router>
+    </CartProvider>
   );
 }
 

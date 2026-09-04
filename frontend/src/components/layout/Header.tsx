@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Shield, ChevronDown } from 'lucide-react';
+import { Menu, X, Shield, ChevronDown, ShoppingCart } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const { itemCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -136,6 +138,19 @@ const Header = () => {
 
           {/* Quote Button & Mobile Menu Button */}
           <div className="flex items-center space-x-4">
+            <Link
+              to="/cart"
+              className="relative text-gray-800 hover:text-orange-600 transition-colors"
+              aria-label="Voir le panier"
+              onClick={closeMenu}
+            >
+              <ShoppingCart size={24} />
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-orange-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
+            </Link>
             <Link to="/contact" className="hidden lg:inline-flex btn btn-primary whitespace-nowrap">
               Obtenir un Devis
             </Link>

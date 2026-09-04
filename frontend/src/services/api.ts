@@ -2,6 +2,40 @@ const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/api";
 
 
+/* Function to create an order (panier) */
+
+export interface OrderItemInput {
+  product: number;
+  quantity: number;
+}
+
+export interface CreateOrderPayload {
+  customer_name: string;
+  customer_phone: string;
+  customer_email?: string;
+  order_items: OrderItemInput[];
+}
+
+export async function createOrder(data: CreateOrderPayload) {
+  const response = await fetch(`${API_BASE_URL}/products/orders/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => null);
+
+    throw new Error(
+      errorData?.detail || "Impossible d'envoyer la commande."
+    );
+  }
+
+  return response.json();
+}
+
 /* Function to send contact message */
 
 export async function createContactMessage(data: {
