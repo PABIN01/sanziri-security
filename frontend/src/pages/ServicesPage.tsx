@@ -1,62 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Users, Building, Calendar, ShieldCheck, Lock, Eye, Cpu, 
-  BadgeAlert, BookOpen, ChevronRight, Phone 
+  Users, Building, Calendar, ShieldCheck, Lock, Eye, 
+  ChevronRight, Phone 
 } from 'lucide-react';
 import Hero from '../components/common/Hero';
 import SectionTitle from '../components/common/SectionTitle';
 import { getServices, Service } from '../services/api';
 import { useSEO } from '../hooks/useSEO';
 
-const serviceIcons: Record<string, React.ReactNode> = {
-  'securite-personnelle': <Users size={28} aria-hidden="true" />,
-  'securite-entreprise': <Building size={28} aria-hidden="true" />,
-  'securite-evenementielle': <Calendar size={28} aria-hidden="true" />,
-  'systemes-de-securite': <Cpu size={28} aria-hidden="true" />,
-  'consultation-en-securite': <BadgeAlert size={28} aria-hidden="true" />,
-  'formation-en-securite': <BookOpen size={28} aria-hidden="true" />,
-};
-
 const ServiceCard = ({ 
-  icon, 
+  image, 
   title, 
   description, 
   features, 
   id 
 }: { 
-  icon: React.ReactNode; 
+  image: string | null; 
   title: string; 
   description: string; 
   features: string[];
   id: string;
 }) => {
   return (
-    <div id={id} className="bg-white rounded-lg shadow-md overflow-hidden group p-8" role="region" aria-labelledby={`${id}-title`}>
-      <div className="rounded-full bg-orange-100 p-4 w-16 h-16 flex items-center justify-center text-orange-600 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300">
-        {icon}
+    <div id={id} className="bg-white rounded-lg shadow-md overflow-hidden group" role="region" aria-labelledby={`${id}-title`}>
+      {image && (
+        <div className="overflow-hidden h-56">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
+
+      <div className="p-8">
+        <h3 id={`${id}-title`} className="text-2xl font-bold mb-4 group-hover:text-orange-600 transition-colors duration-300">{title}</h3>
+
+        <p className="text-gray-600 mb-6">{description}</p>
+
+        <ul className="space-y-3 mb-6" aria-label={`Principaux avantages du service ${title}`}>
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-start">
+              <ShieldCheck className="h-5 w-5 text-orange-600 mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
+              <span className="text-gray-700">{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        <Link 
+          to="/contact" 
+          className="inline-flex items-center text-orange-600 font-medium hover:underline"
+          aria-label={`Demander le service ${title}`}
+        >
+          Demander un service <ChevronRight className="ml-1 h-4 w-4" />
+        </Link>
       </div>
-      
-      <h3 id={`${id}-title`} className="text-2xl font-bold mb-4 group-hover:text-orange-600 transition-colors duration-300">{title}</h3>
-      
-      <p className="text-gray-600 mb-6">{description}</p>
-      
-      <ul className="space-y-3 mb-6" aria-label={`Principaux avantages du service ${title}`}>
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <ShieldCheck className="h-5 w-5 text-orange-600 mr-2 mt-0.5 flex-shrink-0" aria-hidden="true" />
-            <span className="text-gray-700">{feature}</span>
-          </li>
-        ))}
-      </ul>
-      
-      <Link 
-        to="/contact" 
-        className="inline-flex items-center text-orange-600 font-medium hover:underline"
-        aria-label={`Demander le service ${title}`}
-      >
-        Demander un service <ChevronRight className="ml-1 h-4 w-4" />
-      </Link>
     </div>
   );
 };
@@ -154,11 +153,7 @@ const ServicesPage = () => {
     <ServiceCard
       key={service.id}
       id={service.slug}
-      icon={
-        serviceIcons[service.slug] ?? (
-          <ShieldCheck size={28} aria-hidden="true" />
-        )
-      }
+      image={service.image}
       title={service.title}
       description={service.description}
       features={service.features}
